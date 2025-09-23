@@ -7,11 +7,22 @@ app = Flask (__name__)
 #Este é um decorador que associa a URL
 #'/' (a URL raiz do site) à função que vem logo abaixo
 @app.route('/')
-# A função que é executada quando a rota '/' é acessada
-#ele retorna a string "Hello, World!".
+# A função que é executada quando a rota '/' é acessada".
 def hello_world():
-  return 'Hello, World!'
+  return render_template ('index.html')
 
-#executa o servidor de desenvolvimento
+@app.route ('/login', methods=['GET', 'POST'])
+def login():
+  error = None
+  if request.method == 'POST':
+    username = request.form['username']
+    password = request.form['password']
+    if username == 'admin' and password == 'password':
+      return 'Login com sucesso'
+    else:
+      error = 'Credenciais inválidas. Tente novamente'
+  return render_template ('login.html', error = error)
+
 if __name__ == '__main__':
-  app.run(debug=True)
+  port = int (os.environ.get('PORT', 5000))
+  app.run (host='0.0.0.0', port= port, debug= True)
