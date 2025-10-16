@@ -5,6 +5,27 @@
         </title>
     </head>
 <body>
-    <h5>Hello, world!</h5>
+    
+    <form>
+        <p>Usuário</p>
+        <input type="text" id="usuario" placeholder="Digite seu usuário">
+        <p>Senha</p>
+        <input type="text" id="senha" placeholder="Digite sua senha!">
+    </form>
+
+    <script>
+        //login
+        const user = admin
+        const pwd = admin123
+
+        const userDigitado = document.getElementByID('usuario').value()
+        const pwdDigitado = document.getElementById('senha').value()
+
+        if (user === userDigitado && pwd === pwdDigitado){
+            alert('Login realizado com sucesso!')
+        }else {
+            alert ('Usuário ou senha incorretos!')
+        }
+    </script>
 </body>
 </html>
